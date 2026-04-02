@@ -14,6 +14,8 @@ class DebugCamera(Entity):
         camera.position = (50,50,50)
         self.position = camera.position
         self.console()
+        #TODO: need to add a way to teleport to any entity in the scene to make finding them and debugging easier
+
 
     def console(self):
 
@@ -85,7 +87,7 @@ class ThirdPersonCamera(Entity):
         self.position = self.player.position
 
         # Mouse rotation
-        # if held_keys["right mouse"]:
+        # if held_keys["right mouse"]: 
         #     self.rotation_y += mouse.velocity[0] * self.rotation_speed
         #     self.rotation_x -= mouse.velocity[1] * self.rotation_speed
         #     self.rotation_x = clamp(self.rotation_x, -30, 60)
@@ -214,7 +216,37 @@ class Enemy(Entity):
             pos = Vec3(random.randint(0,50), 0, random.randint(0,50))
             self.update_orb(pos)
         
-        
+class Throwable(Entity):
+    def __init__(self, dmg: int | float = 0 , Dmg_radius: Vec3 = (0,0,0), distraction_radius: Vec3 = (0,0,0), distracts: bool = False,
+    mass: int | float = 0, force: Vec3 = (0,0,0), Velocity: Vec3 = (0,0,0), Gravity: int | float = 9.8  ):
+        super().__init__()
+        self.damage = dmg    
+        self.dmg_rnge = Dmg_radius
+        self.distraction_range = distraction_radius
+        self.distracts_enemies = distracts 
+        self.mass = mass 
+        self.force = force
+        self.Velocity = velocity 
+        self.gravity = Gravity # used real world gravity for kwarg so it can try to match real world physics, may change soon though 
+
+    def throw(self):
+        pass 
+        """we want the force of the player with and the projectory of the throw to calulate the distance it travles, 
+        spped and velocity to then calculate any drag, momentum or even bounce of the throwable"""    
+    def show_trail_line(self): 
+        pass 
+        """I will make a visual represntation of the throw of the grenade using whitel line so player knows where there aiming
+        might chnage this in the future to just make the user have to aim with cursor and then will have to gess how high up, not yet decide 
+        tho"""
+
+    def update(self):
+        acceleration = self.force / self.mass
+        self.Velocity += acceleration * time.dt
+        self.position += self.Velocity * time.dt
+
+
+        """dont know if this needed yet, probably though to actually calultae the momentum or stuff, dont yet know what to do, kind of just brain 
+        storming at the moment, """
 
 sky = Sky()
 ground = Entity(model='plane',texture="grass", scale=250, collider='box', color=color.green)
@@ -225,6 +257,7 @@ Enemy = Enemy("assets/Characters.glb")
 
 debug_cam = DebugCamera()
 third_cam = ThirdPersonCamera(player)
+
 
 
 mode = "third"
