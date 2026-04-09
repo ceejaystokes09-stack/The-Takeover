@@ -295,3 +295,95 @@ def input(key):
 
 
 app.run()
+"""class Playground {
+    public static CreatePlayer(scene: BABYLON.Scene): BABYLON.Mesh {
+        const player = BABYLON.MeshBuilder.CreateBox("player", { size: 1 }, scene);
+        player.position.y = 0.5;
+        const material = new BABYLON.StandardMaterial("mat", scene);
+
+        // Set color (RGB: 0 → 1)
+        material.diffuseColor = new BABYLON.Color3(0.06, 0.84, 0.94); 
+
+        // Apply to mesh
+        player.material = material;
+
+        return player;}
+
+    public static Jump(scene: BABYLON.Scene, player: BABYLON.Mesh): void{
+        const animation = new BABYLON.Animation("Jump_up", "position.y", 20, BABYLON.Animation.ANIMATIONTYPE_FLOAT);
+
+        animation.setKeys([
+            { frame: 0, value: 1 },
+            { frame: 5, value: 2 },
+            {frame: 10, value: 1}
+        ]);
+
+        player.animations.push(animation);
+        scene.beginAnimation(player, 0, 10, false);
+    
+    }
+
+
+
+    public static CreateScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement): BABYLON.Scene {
+        // This creates a basic Babylon Scene object (non-mesh)
+        var scene = new BABYLON.Scene(engine);
+
+
+        var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+
+        // This targets the camera to scene origin
+        var player = Playground.CreatePlayer(scene)
+        camera.parent = player 
+        camera.position = new BABYLON.Vector3(0, 2, -5); 
+        // This attaches the camera to the canvas
+        camera.attachControl(canvas, true);
+
+        // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+        var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+        // Default intensity is 1. Let's dim the light a small amount
+        light.intensity = 0.7;
+
+        // Our built-in 'sphere' shape.
+        //var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
+
+        // Move the sphere upward 1/2 its height
+        //sphere.position.y = 1;
+
+        // Our built-in 'ground' shape.
+        var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
+        // input control for the player. 
+        const inputMap: any = {};
+
+        scene.actionManager = new BABYLON.ActionManager(scene);
+
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                BABYLON.ActionManager.OnKeyDownTrigger,
+                evt => inputMap[evt.sourceEvent.key] = true
+            )
+        );
+
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                BABYLON.ActionManager.OnKeyUpTrigger,
+                evt => inputMap[evt.sourceEvent.key] = false
+            )
+        );
+
+        scene.onBeforeRenderObservable.add(() => {
+            if (inputMap["w"]) player.position.z += 0.1;
+            if (inputMap["s"]) player.position.z -= 0.1;
+            if (inputMap["a"]) player.position.x -= 0.1;
+            if (inputMap["d"]) player.position.x += 0.1;
+            if (inputMap[" "]) Playground.Jump(scene, player);
+        });
+
+
+        return scene;
+    }
+    //public static Player_controls()
+}  
+export { Playground };
+
+""" # BABYLON TESTING MAY MAKE GAME WITH THIS AFTER THIS PROJECT NOT SURE YET 
