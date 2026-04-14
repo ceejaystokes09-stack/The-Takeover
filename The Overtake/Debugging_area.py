@@ -39,3 +39,39 @@ end_time = perf_counter()
 
 print(f"Execution time: {end_time - start_time:.6f} seconds")
 """
+
+"""class Test:
+    def __init__(self, target: int, current: int, grid: list[list[int]]):
+        self.target_number = target # basically what number on the grid is the target value in this
+        # scenario its 3
+        self.current_number = current
+        self.grid = grid
+        self.visited: list[tuple[int,int]]=()
+        self.target_pos, self.current_pos = self.search_grid()
+        #self.calc_path()
+    
+    def search_grid(self):
+        for r, row in enumerate(self.grid):
+            for c, value in enumerate(row):
+                if value == self.current_number:
+                    print("Found current position at:", r, c)
+                    cp = (r,c)
+                if value == self.target_number:
+                    print("Found target position at:", r, c)
+                    tp = (r,c)
+        
+        return tp,cp
+        
+    
+    #def calc_path(self):
+        
+    
+grid = [
+    [1, 1, 1, 1, 1],
+    [1, 2, 0, 0, 1],
+    [1, 0, 1, 0, 1],
+    [1, 0, 0, 3, 1],
+    [1, 1, 1, 1, 1],
+]
+
+Test(3,2,grid)"""
