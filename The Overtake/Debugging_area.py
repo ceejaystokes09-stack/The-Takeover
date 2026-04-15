@@ -1,5 +1,24 @@
 from ursina import * 
+"""from typing import Tuple, List
 
+
+bounding_box_1:List[Tuple[int,int,int]] = [(1,1,1), (-1,-1,-1)]
+
+def bounding_box_details(bounding_box:List[Tuple[int,int,int]])-> Tuple[float,float,float]:
+    # cord1 = bounding_box[0]
+    # cord2=bounding_box[1]
+    
+    # bx:float = cord1[0] - cord2[0]
+    # by:float = cord1[1] - cord2[1]
+    # bz:float = cord1[2] - cord2[2]
+    # return(bx,by,bz)
+    return (
+        float(bounding_box[0][0] - bounding_box[1][0]),
+        float(bounding_box[0][1] - bounding_box[1][1]),
+        float(bounding_box[0][2] - bounding_box[1][2])
+    )
+
+print(bounding_box_details(bounding_box_1))"""
 """from typing import Dict, Tuple, Callable
 from random import randint as ri
 from time import perf_counter 
