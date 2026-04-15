@@ -1,4 +1,11 @@
 from ursina import * 
+#this version is a more updated version eg uses no function sand just uses numpy but it gives a different result so still dont know if im going to use
+"""import numpy as np
+
+bb = np.array([(1, 1, 1), (-1, -1, -1)])
+diff = bb[0] - bb[1]
+print(diff)""" 
+
 """from typing import Tuple, List
 
 
