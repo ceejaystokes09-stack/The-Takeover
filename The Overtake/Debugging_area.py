@@ -1,4 +1,49 @@
 from ursina import * 
+
+"""from typing import Dict, Tuple
+import numpy as np
+
+class bounding_boxes:
+    boxes: Dict[str, np.ndarray] = {}
+
+    def __init__(self, box_data: Dict[str, np.ndarray]):
+        self.data = box_data
+        self.add_global()
+
+    def add_global(self):
+        for name, data in self.data.items():
+            bounding_boxes.boxes[name] = data
+
+    @staticmethod
+    def get_min_max(data: np.ndarray):
+        min_vals = data.min(axis=0)
+        max_vals = data.max(axis=0)
+        return min_vals, max_vals
+
+    @classmethod
+    def check_box(cls, point: Tuple[int, int, int]):
+        px, py, pz = point
+
+        for name, data in cls.boxes.items():
+            min_vals, max_vals = cls.get_min_max(data)
+
+            if (min_vals[0] <= px <= max_vals[0] and
+                min_vals[1] <= py <= max_vals[1] and
+                min_vals[2] <= pz <= max_vals[2]):
+                return name
+
+        return None
+
+
+bounding_boxes({f"box_{1}":np.array([(1,1,1),(-1,-1,-1)])})
+
+bounding_boxes({f"box_{2}":np.array([(10,10,10),(8,8,8)])})
+
+box: str = bounding_boxes.check_box((9,9,9))
+print(box)
+
+"""
+
 #this version is a more updated version eg uses no function sand just uses numpy but it gives a different result so still dont know if im going to use
 """import numpy as np
 
