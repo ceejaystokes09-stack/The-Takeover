@@ -217,16 +217,16 @@ class Enemy(Entity):
             self.update_orb(pos)
         
 class Throwable(Entity):
-    def __init__(self, dmg: int | float = 0 , Dmg_radius: Vec3 = (0,0,0), distraction_radius: Vec3 = (0,0,0), distracts: bool = False,
-    mass: int | float = 0, force: Vec3 = (0,0,0), Velocity: Vec3 = (0,0,0), Gravity: int | float = 9.8  ):
+    def __init__(self, Dmg: int | float = 0 , Dmg_radius: Vec3 = (0,0,0), Distraction_radius: Vec3 = (0,0,0), Distracts: bool = False,
+    Mass: int | float = 0, Force: Vec3 = (0,0,0), Velocity: Vec3 = (0,0,0), Gravity: int | float = 9.8  ):
         super().__init__()
-        self.damage = dmg    
+        self.damage = Dmg    
         self.dmg_rnge = Dmg_radius
-        self.distraction_range = distraction_radius
-        self.distracts_enemies = distracts 
-        self.mass = mass 
-        self.force = force
-        self.Velocity = velocity 
+        self.distraction_range = Distraction_radius
+        self.distracts_enemies = Distracts 
+        self.mass = Mass 
+        self.force = Morce
+        self.Velocity = Velocity 
         self.gravity = Gravity # used real world gravity for kwarg so it can try to match real world physics, may change soon though 
 
     def throw(self):
