@@ -1,15 +1,23 @@
 from ursina import * 
+from Scripts.Weapons import shootable, Melee
+
 
 
 class Player(Entity):
     Pos:Vec3 = Vec3(0,0,0)
     def __init__(self, model):
-        super().__init__(model=model, collider='box', scale=.8, name="player")
+        super().__init__(model=model, collider='box', scale=.8, name="player", camera_ref= None)
         self.position=(100,5,100)
         self.move_speed = 12
         self.can_move = True
         self.jump_height = 3
         self.velocity_y = 0
+        self.weapons = {"Mp5": shootable("assets/mp5_black.glb", player_ref=self, attack_dmg=63),
+                        "stick": Melee(self),
+                        }
+        self.equipped = "Mp5"
+        self.change_weapon()
+        
         self.gravity = 20
         self.grounded = True
         self.jumping = False 
@@ -17,6 +25,12 @@ class Player(Entity):
         self.health = self.max_health  # Current health
         # self.has_weapon = True
         # self.weapon = weapon 
+    
+    def change_weapon(self):
+        for weapon_name, e in self.weapons.items():
+            if weapon_name == self.equipped:
+                self.weapons[weapon_name].enable()
+            self.weapons[weapon_name].disable
 
     def jump(self): 
         if self.jumping or not self.grounded: 
@@ -36,6 +50,13 @@ class Player(Entity):
     def input(self, key): 
         if key == "space" and self.can_move: 
             self.jump()
+
+        if key == "1":
+            self.equipped = "Mp5"
+            self.change_weapon()
+        if key == "2":
+            self.equipped = "stick"
+            self.change_weapon()
         #if key == ".": self.health -= 10 
 
     def update(self):
